@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Prediction Results</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+     <style>
+         .title {
+             text-align: center;
+         }
+ 
+         .result-container {
+             display: flex;
+             justify-content: center;
+             align-items: flex-start;
+             margin-top: 50px;
+         }
+ 
+         .column {
+             flex: 1;
+             margin: 0 20px;
+         }
+ 
+         @media only screen and (max-width: 768px) {
+             .result-container {
+                 flex-direction: column; /* Stack columns on smaller screens */
+                 align-items: center; /* Center align columns */
+             }
+ 
+             .column {
+                 width: 100%; /* Take full width on smaller screens */
+                 margin: 20px 0; /* Add margin between columns */
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <h1 class="title">Prediction Results</h1>
+     <div class="result-container">
+         <div class="column">
+             <h2>SARIMA Forecast</h2>
+             <img src="data:image/png;base64,{{ plot_data }}" alt="Forecast Plot">
+         </div>
+     
+         <div class="column">
+             <h2>Sales Quantity in Future</h2>
+             {{ forecast_table | safe }}
+         </div> 
+     </div>
+ </body>
+ </html>
+ 
+ 
+
